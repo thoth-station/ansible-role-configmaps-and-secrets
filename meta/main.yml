@@ -19,4 +19,5 @@ galaxy_info:
     - thoth
     - aistacks
 
-dependencies: []
+dependencies:
+  - thoth-station.core_templates

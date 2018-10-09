@@ -17,11 +17,11 @@
     changed_when: false
 
   - name: creating Secret
-    command: oc new-app --namespace="{{ THOTH_INFRA_NAMESPACE }}" thoth-core-secret \
+    command: oc process --namespace="{{ THOTH_INFRA_NAMESPACE }}" thoth-core-secret \
         -p THOTH_APP_SECRET_KEY="{{ THOTH_APP_SECRET_KEY }}" \
         -p THOTH_SECRET="{{ THOTH_SECRET }}" \
         -p THOTH_CEPH_KEY_ID="{{ THOTH_CEPH_KEY_ID }}" \
-        -p THOTH_CEPH_SECRET_KEY="{{ THOTH_CEPH_SECRET_KEY }}"
+        -p THOTH_CEPH_SECRET_KEY="{{ THOTH_CEPH_SECRET_KEY }}" | oc apply -f -
     when: thoth_secrert_exists is failed
 
   - name: check if ConfigMap exists
@@ -31,7 +31,7 @@
     changed_when: false
 
   - name: creating ConfigMap Template
-    command: oc new-app --namespace="{{ THOTH_INFRA_NAMESPACE  }}" thoth-core-configmap \
+    command: oc process --namespace="{{ THOTH_INFRA_NAMESPACE  }}" thoth-core-configmap \
         -p THOTH_DEPLOYMENT_NAME="{{ THOTH_DEPLOYMENT_NAME }}" \
         -p THOTH_FRONTEND_NAMESPACE="{{ THOTH_FRONTEND_NAMESPACE }}" \
         -p THOTH_MIDDLETIER_NAMESPACE="{{ THOTH_MIDDLETIER_NAMESPACE }}" \
@@ -40,5 +40,5 @@
         -p THOTH_S3_ENDPOINT_URL="{{ THOTH_S3_ENDPOINT_URL  }}" \
         -p THOTH_CEPH_BUCKET="{{ THOTH_CEPH_BUCKET }}" \
         -p PROMETHEUS_PUSHGATEWAY_HOST="{{ PROMETHEUS_PUSHGATEWAY_HOST }}" \
-        -p PROMETHEUS_PUSHGATEWAY_PORT="{{ PROMETHEUS_PUSHGATEWAY_PORT }}"
+        -p PROMETHEUS_PUSHGATEWAY_PORT="{{ PROMETHEUS_PUSHGATEWAY_PORT }}" | oc apply -f -
     when: thoth_configmap_exists is failed
