@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tags:
+    - all-tests
+
+  roles:
+    - role: ../..
