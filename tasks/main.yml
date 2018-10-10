@@ -15,7 +15,8 @@
         -p THOTH_APP_SECRET_KEY="{{ THOTH_APP_SECRET_KEY }}" \
         -p THOTH_SECRET="{{ THOTH_SECRET }}" \
         -p THOTH_CEPH_KEY_ID="{{ THOTH_CEPH_KEY_ID }}" \
-        -p THOTH_CEPH_SECRET_KEY="{{ THOTH_CEPH_SECRET_KEY }}" | oc apply -f -
+        -p THOTH_CEPH_SECRET_KEY="{{ THOTH_CEPH_SECRET_KEY }}" \
+        -p SENTRY_DSN="{{ SENTRY_DSN }}" | oc apply -f -
 
   - name: creating ConfigMap Template
     shell: oc process --namespace="{{ THOTH_INFRA_NAMESPACE  }}" thoth-core-configmap \
