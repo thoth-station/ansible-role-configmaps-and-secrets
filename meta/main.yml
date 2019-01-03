@@ -1,5 +1,6 @@
 galaxy_info:
   author: Christoph Görn
+  role_name: "configmaps_and_secrets"
   description: Create ConfigMap and Secret required by Project Thoth
   company: Red Hat Inc., the Office of the CTO
 
@@ -7,13 +8,13 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: 2.6.0
+  min_ansible_version: 2.7.0
 
   platforms:
   - name: Fedora
     versions:
+    - 29
     - 28
-    - 27
 
   galaxy_tags:
     - thoth
