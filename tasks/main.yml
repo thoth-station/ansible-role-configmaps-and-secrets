@@ -10,7 +10,7 @@
       - "thoth-core-configmap"
     changed_when: false
 
-  - name: creating Secret
+  - name: "creating Secret"
     shell: oc process --namespace="{{ THOTH_INFRA_NAMESPACE }}" thoth-core-secret \
         -p THOTH_APP_SECRET_KEY="{{ THOTH_APP_SECRET_KEY }}" \
         -p THOTH_SECRET="{{ THOTH_SECRET }}" \
@@ -19,8 +19,9 @@
         -p SENTRY_DSN="{{ SENTRY_DSN }}" \
         -p MANAGEMENT_API_TOKEN="{{ THOTH_SECRET }}" | oc apply -f -
 
-  - name: creating ConfigMap Template
+  - name: "creating ConfigMap"
     shell: oc process --namespace="{{ THOTH_INFRA_NAMESPACE  }}" thoth-core-configmap \
+        -p AMUN_API_URL="{{ AMUN_API_URL }}" \
         -p THOTH_DEPLOYMENT_NAME="{{ THOTH_DEPLOYMENT_NAME }}" \
         -p THOTH_FRONTEND_NAMESPACE="{{ THOTH_FRONTEND_NAMESPACE }}" \
         -p THOTH_MIDDLETIER_NAMESPACE="{{ THOTH_MIDDLETIER_NAMESPACE }}" \
