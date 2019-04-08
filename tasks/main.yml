@@ -22,6 +22,7 @@
   - name: "creating ConfigMap"
     shell: oc process --namespace="{{ THOTH_INFRA_NAMESPACE  }}" thoth-core-configmap \
         -p AMUN_API_URL="{{ AMUN_API_URL }}" \
+        -p ISIS_API_URL="{{ ISIS_API_URL }}" \
         -p THOTH_DEPLOYMENT_NAME="{{ THOTH_DEPLOYMENT_NAME }}" \
         -p THOTH_FRONTEND_NAMESPACE="{{ THOTH_FRONTEND_NAMESPACE }}" \
         -p THOTH_MIDDLETIER_NAMESPACE="{{ THOTH_MIDDLETIER_NAMESPACE }}" \
